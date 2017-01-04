@@ -1,0 +1,94 @@
+.figureWrapper {
+    padding: 5px;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+
+    border-bottom: thin solid grey;
+}
+
+.figureName {
+    position: relative;
+    padding: 0;
+    margin-left: 10px; 
+    align-items: center;
+    height: 100%;
+}
+
+.figureLeft {
+    position: relative;
+    display: flex; 
+    align-items: center;
+    width: 85%;
+    height: 100%;
+}
+
+.figureButton {
+    padding: 0;
+    margin: 0 auto;
+    width: 15%;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: white;
+    border: none;
+    border-radius: 10px;
+    max-width: 60px;
+}
+
+.figureButton.add {
+    background-color: limegreen;
+}
+
+.figureButton.remove {
+    background-color: crimson;
+}
+
+.roundedOne {
+  min-width: 24px;
+  height: 24px;
+  position: relative;
+  margin: 0;
+  background-color: black;
+  border-radius: 50px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: black;
+    
+}
+.roundedOne label {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  position: absolute;
+  left: 2px;
+  top: 2px;
+
+  background-color: white;
+  border-radius: 50px;
+
+}
+.roundedOne label:after {
+  content: '';
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  background-color: #AFC23C;
+  opacity: 0;
+  border-radius: 50px;
+}
+/*
+.roundedOne label:hover::after {
+  opacity: 0.3;
+}
+*/
+.roundedOne input[type=checkbox] {
+  visibility: hidden;
+}
+.roundedOne input[type=checkbox]:checked + label:after {
+  opacity: 1;
+}
+
+/* end .roundedOne */

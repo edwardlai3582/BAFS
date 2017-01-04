@@ -1,0 +1,9 @@
+.linkClass{
+    text-decoration: none;
+    color: white;
+}
+
+.linkActive {
+    color: yellow;
+    font-weight: bold;
+}

@@ -1,0 +1,96 @@
+.seriesWrapper {
+    margin-bottom: 10px;    
+}
+
+.seriesTitleWrapper {
+    background-color: #AFC23C;/*#035D82;*/
+    color: black;
+    padding: 1vw;
+    display: flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.seriesName {
+    padding: 0;
+    margin: 0 2px;
+    font-size: 16px;
+}
+
+.seriesComplete {
+    
+}
+
+.showbutton {
+    width: 50px;
+    padding: 5px 0;
+    background-color: white;
+    border-style: solid;
+    border-color: black;
+    border-radius: 5%;
+    font-weight: bold;
+}
+
+.ulWrapper {
+    max-height: 0;
+    border: none;
+    overflow: hidden;
+    transition: all  350ms ease-in; 
+}
+
+
+.ulWrapper.show{
+    border-width: 1px;
+    border-style: solid;
+    overflow: hidden;
+    max-height: 800px;
+}
+
+.ulWrapper ul{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.firstLi {
+    display: flex;
+    background-color: #D2F27F;/*1BBFCB;*/
+    font-size: 12px;
+    border-bottom: thin solid black;
+}
+
+@media only screen and (max-width: 500px) {
+    .firstLi {
+        font-size: 10px;    
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .firstLi {
+        font-size: 8px;    
+    }
+}
+
+.firstLeft {
+    display: flex; 
+    width: 85%;
+}
+
+.firstOwn {
+    padding: 5px;
+    min-width: 24px;
+}
+
+.firstName {
+    padding: 5px;
+    text-align: center;
+    border-left: thin solid black;
+    width: 100%;
+}
+
+.firstRight {
+    padding: 5px;
+    width: 15%;
+    text-align: center;
+    border-left: thin solid black;
+}

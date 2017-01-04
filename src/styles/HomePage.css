@@ -1,0 +1,67 @@
+/*@import 'https://fonts.googleapis.com/css?family=Bangers';*/
+@font-face {
+    font-family: KOMIKAX;
+    src: url(BadaboomBB_Reg.ttf);
+}
+
+.homeWrapper {
+    position: relative;
+    width: 100%;
+    color: black;
+}
+
+.homeHero {
+    position: relative;
+    background-image: url("Iron-Fist-Comics.jpg");
+    background-size: cover;
+    width: 100%;
+    height: 62vw;
+}
+
+.homeMessage {
+    font-family: 'KOMIKAX';/*'Bangers';*/
+    background-color: none;
+    display: inline-block;
+    position: relative;
+    top: 6vw;
+    left: 15.5vw;
+    width: 47vw;
+    height: 17.5vw;
+    color: black;
+    font-size: 5vw;
+    text-align: center;
+}
+
+.homeABout{
+    background-color: white;
+    padding: 10px 5%;
+    font-weight: bold;
+    text-align: center;
+}
+
+.homeABout h3 {
+    margin: 0;
+    padding: 5px 0;
+    text-align: center;
+    font-size: 32px;
+    font-family: 'KOMIKAX', cursive;
+}
+
+.homeABout article {
+    text-align: left;
+    display: inline-block;
+    color: black;
+}
+
+.homeFooter {
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 10px 0;
+    background-color: #AFC23C;
+}
+
+.homeFooter article {
+    display: inline-block;
+    color: black;
+}

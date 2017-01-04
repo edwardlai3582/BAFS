@@ -1,0 +1,73 @@
+@font-face {
+    font-family: KOMIKAX;
+    src: url(BadaboomBB_Reg.ttf);
+}
+.checkListWrapper{
+    background-color: white;
+    color: black;
+}
+.tOrHWrapper {
+    background-color: dimgrey;
+    width: 100%;
+    color: black;
+}
+
+.tOrHWrapper button {
+    width: 50%;
+    margin: 8px 0 0;
+    padding: 5px;
+    font-size: 4.5vw;
+    font-family: 'KOMIKAX';
+    background-color: white;
+    border-style: solid;
+    border-width: 1vw;
+    border-color: white;
+    border-bottom: none;
+    border-top: none;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.tOrHWrapper button:focus {
+    outline: white;
+}
+
+.tOrHWrapper button.notCurrent {
+    background-color: dimgrey;
+    border-color: dimgrey;
+    color: lightgrey;
+}
+
+.topLevelChildrenWrapper {
+    position: relative;
+    width: 90%;
+    margin: 0 5%;
+    top: 10px;
+    background-color: white;
+    color: black;
+    padding-bottom: 30px;
+}
+
+.typeWrapper {
+    text-align: center;
+    margin-top: 35px;
+    margin-bottom: 15px;
+}
+
+.showNum {
+    text-align: center;
+    margin-top: 20px;
+}
+
+@media only screen and (max-width: 500px) {
+    .tOrHWrapper button {
+        font-size: 20px;
+    }
+}
+
+@media only screen and (max-width: 350px) {    
+    .topLevelChildrenWrapper {
+        width: 98%;
+        margin: 0 1%;
+    }
+}
