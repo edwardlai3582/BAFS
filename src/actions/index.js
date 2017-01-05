@@ -1,4 +1,4 @@
-//import * as types from './actionTypes';
+import * as consts from '../consts';
 import axios from 'axios';
 
 export const addOwned = (figure) => ({
@@ -35,6 +35,11 @@ export const loginWithToken = (token)=> {
     return axios.get(`http://localhost:3001/api/authenticate?token=${token}`)
       .then(response => {
         //response.json()
+        localStorage.setItem("jwtToken", response.data.token);
+        dispatch({
+          type: consts.TOKENEXISTS,
+          exists: true          
+        });
         console.log(response)
       })
       .then(json =>{}
@@ -42,3 +47,8 @@ export const loginWithToken = (token)=> {
       )
   }
 }
+
+export const tokenExists = (exists) => ({
+  type: consts.TOKENEXISTS,
+  exists
+})

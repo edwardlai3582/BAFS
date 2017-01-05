@@ -58,7 +58,6 @@ router.route('/authenticate')
     axios.get(`https://graph.facebook.com/me?fields=id,name,picture,email&access_token=${req.query.token}`)
       .then((response)=> {
         console.log(response.data);
-        ///*
         User.findOne({ 'fbid' : response.data.id }, function(err, user) {
             if (err) {
               res.json({message:'findOne failed'});
@@ -69,13 +68,13 @@ router.route('/authenticate')
               // if user is found and password is right
               // create a token
               var token = jwt.sign(user, app.get('superSecret'), {
-                expiresIn : 1440 // expires in 24 hours
+                expiresIn : 60 * 60 * 1// expires in 1 hours
               });
 
               // return the information including token as JSON
               res.json({
                 success: true,
-                message: user.fbid,
+                fbid: user.fbid,
                 token: token
               });
             }
@@ -95,26 +94,22 @@ router.route('/authenticate')
                     res.json({message:'create new user failed'});
                   }
                   else {
-                    ///*
                     // if successful, return the new user
                     var token = jwt.sign(newUser, app.get('superSecret'), {
-                      expiresIn: 1440 // expires in 24 hours
+                      expiresIn: 60 * 60 * 1// expires in 1 hours
                     });
 
                     // return the information including token as JSON
                     res.json({
                       success: true,
-                      message: newUser.fbid,
+                      fbid: newUser.fbid,
                       token: token
                     });
-                    //*/
                   }
               });
             }
 
         });
-        //*/
-        //res.json({message:response.data});
       })
       .catch(function (error) {
         console.log(error);
