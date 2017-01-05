@@ -1,4 +1,4 @@
-import * as types from './actionTypes';
+//import * as types from './actionTypes';
 import axios from 'axios';
 
 export const addOwned = (figure) => ({
@@ -32,7 +32,7 @@ export const loginWithToken = (token)=> {
   return function (dispatch) {
     //dispatch(requestPosts(subreddit))
     console.log("send "+token)
-    return axios.get(`http://localhost:3001/api/login?token=${token}`)
+    return axios.get(`http://localhost:3001/api/authenticate?token=${token}`)
       .then(response => {
         //response.json()
         console.log(response)
