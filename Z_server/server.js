@@ -57,7 +57,7 @@ router.route('/authenticate')
     //console.log(req.query.token);
     axios.get(`https://graph.facebook.com/me?fields=id,name,picture,email&access_token=${req.query.token}`)
       .then((response)=> {
-        console.log(response.data);
+        //console.log(response.data);
         User.findOne({ 'fbid' : response.data.id }, function(err, user) {
             if (err) {
               res.json({message:'findOne failed'});
@@ -65,26 +65,34 @@ router.route('/authenticate')
             }
 
             if (user) {
+              console.log('user found');
+              console.log(user);
               // if user is found and password is right
               // create a token
-              var token = jwt.sign(user, app.get('superSecret'), {
+              let payload = {
+                _doc:{
+                  id: user._id,
+                  fbname: user.fbname,
+                  fbpicture: user.fbpicture
+                }
+              }
+              let token = jwt.sign(payload, app.get('superSecret'), {
                 expiresIn : 60 * 60 * 1// expires in 1 hours
               });
 
               // return the information including token as JSON
               res.json({
                 success: true,
-                fbid: user.fbid,
                 token: token
               });
             }
             else {
+              console.log('need to create new user');
               // if there is no user found with that facebook id, create them
               var newUser = new User();
 
               // set all of the facebook information in our user model
               newUser.fbid    = response.data.id;
-              //newUser.facebook.token = token;
               newUser.fbname  = response.data.name;
               newUser.fbemail = response.data.email;
               newUser.fbpicture = response.data.picture.data.url;
@@ -95,14 +103,21 @@ router.route('/authenticate')
                   }
                   else {
                     // if successful, return the new user
-                    var token = jwt.sign(newUser, app.get('superSecret'), {
+                    let payload = {
+                      _doc:{
+                        id: newUser._id,
+                        fbname: newUser.fbname,
+                        fbpicture: newUser.fbpicture
+                      }
+                    }
+
+                    var token = jwt.sign(payload, app.get('superSecret'), {
                       expiresIn: 60 * 60 * 1// expires in 1 hours
                     });
 
                     // return the information including token as JSON
                     res.json({
                       success: true,
-                      fbid: newUser.fbid,
                       token: token
                     });
                   }
@@ -116,6 +131,8 @@ router.route('/authenticate')
         res.json({message:'FB login failed'});
       });
   });
+
+
 
 //Use our router configuration when we call /api
 app.use('/api', router);

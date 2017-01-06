@@ -56,14 +56,26 @@ class HomePage extends React.Component {
   render(){
     return (
       <section className="homeWrapper">
-        {this.state.login?<button onClick={this.logout}>logout</button>:<a href="#" onClick={this.login}>Login</a>}
+        {this.props.auth.exists?
+          <div>
+
+            {this.props.auth.user?
+              <div>
+                {this.props.auth.user.fbname}
+                <img src={this.props.auth.user.fbpicture} alt={this.props.auth.user.fbname} />
+              </div>
+              : "sss"}
+          </div>
+          :
+          this.state.login?<button onClick={this.logout}>logout</button>:<a href="#" onClick={this.login}>Login</a>
+        }
         </section>
     );
   }
 }
 
 const mapStateToProps = (state) => ({
-
+  auth: state.auth
 })
 
 const mapDispatchToProps = (dispatch) => (

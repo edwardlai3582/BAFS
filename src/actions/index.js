@@ -1,5 +1,6 @@
 import * as consts from '../consts';
 import axios from 'axios';
+import jwtDecode from 'jwt-decode';
 
 export const addOwned = (figure) => ({
   type: 'ADD_OWNED',
@@ -27,6 +28,20 @@ export const loginWithToken = (token) => ({
   token
 })
 */
+export const tokenExists = (...args) => {
+  return function (dispatch) {
+    dispatch({
+      type: consts.TOKENEXISTS,
+      exists: args[0]
+    });
+    if(args[0] && args[1]){
+      dispatch({
+        type: consts.USERDATA,
+        user: args[1]
+      });
+    }
+  }
+}
 
 export const loginWithToken = (token)=> {
   return function (dispatch) {
@@ -34,21 +49,14 @@ export const loginWithToken = (token)=> {
     console.log("send "+token)
     return axios.get(`http://localhost:3001/api/authenticate?token=${token}`)
       .then(response => {
-        //response.json()
-        localStorage.setItem("jwtToken", response.data.token);
-        dispatch({
-          type: consts.TOKENEXISTS,
-          exists: true          
-        });
-        console.log(response)
+        if(response.data.message){
+            console.log(response.data.message)
+        }
+        else{
+          localStorage.setItem("jwtToken", response.data.token);
+          dispatch(tokenExists(true, jwtDecode(response.data.token)._doc));
+          console.log(response)
+        }
       })
-      .then(json =>{}
-        //dispatch(receivePosts(subreddit, json))
-      )
   }
 }
-
-export const tokenExists = (exists) => ({
-  type: consts.TOKENEXISTS,
-  exists
-})
